@@ -1,0 +1,24 @@
+NoContactAllowed
+================
+
+This plugin is just a set of some simple regular expressions that let you prevent users from posting their contact information.
+
+
+Example
+=======
+
+@numbers = %{phone numbers: 501011852 or 501 011 852 or 501-011-852 or 33 8 321 002 or 33-8-321-002 or (33) 8 321 002 or (33) 8321 002 or (33)8321002}
+
+@emails = %{arek[at]selleo.com or arek [at]selleo.com or arek[at] selleo.com or arek [at] selleo.com or arek[ at]selleo.com or arek[ at ]selleo.com arek [ at ] selleo.com or arek at selleo.com or arek[ at ]selleo.com or arek[ at ]selleo dot com or arek @ domenta.com or mirek33[ at ]selleo dot}
+
+@streets = %(ul. ?nie?ki or 43-300 bielsko-bia?a ul.Smo?ki 31 or 23-234 czech—wisz?e - dziedziszc?e Al. Armii Krajowej 123 or 34-435 Ul. 1 Dywizji Panernej 42/ or al. 1 Dywizji Panernej 42/12}
+
+@numbers.replace_phone(" - NO CONTACT ALLOWED - ")
+
+@emails.replace_email
+
+@streets.replace_address(" ")
+
+(@numbers + @emails + @streets).replace_all_contact(@numbers + @emails + @streets)
+
+Copyright (c) 2010 Arkadiusz Kwa?ny, released under the MIT license
